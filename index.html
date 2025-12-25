@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi amor ❤️</title>
+
+<meta name="robots" content="noindex, nofollow">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  height: 100vh;
+  overflow: hidden;
+  background: black;
+}
+
+/* ---------- PANTALLA INICIAL ---------- */
+#inicio {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+#video-navidad {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#inicio::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.contenido-inicio {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* ---------- SOBRE ---------- */
+#sobre {
+  font-size: 120px;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  transition: transform .4s;
+}
+
+#sobre:hover {
+  transform: scale(1.1);
+}
+
+.sello {
+  position: absolute;
+  bottom: 18px;
+  right: 28px;
+  font-size: 28px;
+  animation: latido 1.4s infinite;
+}
+
+@keyframes latido {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  60% { transform: scale(1); }
+}
+
+.mensaje {
+  margin-top: 20px;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+/* ---------- RASTRO DE LUZ ---------- */
+.rastro {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(255,255,255,1), rgba(255,255,255,0));
+  border-radius: 50%;
+  pointer-events: none;
+  animation: brillar .8s forwards;
+  z-index: 20;
+}
+
+@keyframes brillar {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* ---------- CARTA ---------- */
+#carta {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: url("nosotros.jpeg") center/cover no-repeat;
+  z-index: 5;
+}
+
+.carta-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.carta-contenido {
+  max-width: 750px;
+  color: white;
+  text-align: center;
+  animation: aparecer 1.5s ease;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+
+p {
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  #sobre { font-size: 90px; }
+  h1 { font-size: 32px; }
+  p { font-size: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INICIO -->
+<div id="inicio">
+  <video id="video-navidad" autoplay muted loop>
+    <source src="navidad.mp4" type="video/mp4">
+  </video>
+
+  <div class="contenido-inicio">
+    <div id="sobre">
+      ✉️
+      <span class="sello">❤️</span>
+    </div>
+    <div class="mensaje">Toca el sobre, mi amor</div>
+  </div>
+</div>
+
+<!-- MÚSICA -->
+<audio id="musica" loop>
+  <source src="perfect.mp3" type="audio/mpeg">
+</audio>
+
+<!-- CARTA -->
+<div id="carta">
+  <div class="carta-overlay">
+    <div class="carta-contenido">
+      <h1>Feliz Navidad, mi amor 🎄❤️</h1>
+      <p>
+        Hoy quiero regalarte algo diferente, algo que no se envuelve con papel,
+        pero que nace desde lo más profundo de mi corazón.
+        <br><br>
+        Gracias por llegar a mi vida, por tu luz, por tu amor y por cada momento
+        que compartimos.  
+        Te amo hoy, mañana y siempre.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+const sobre = document.getElementById("sobre");
+const inicio = document.getElementById("inicio");
+const carta = document.getElementById("carta");
+const musica = document.getElementById("musica");
+
+sobre.addEventListener("click", (e) => {
+
+  for (let i = 0; i < 6; i++) {
+    const rastro = document.createElement("span");
+    rastro.className = "rastro";
+    rastro.style.left = (e.clientX + Math.random()*20 - 10) + "px";
+    rastro.style.top = (e.clientY + Math.random()*20 - 10) + "px";
+    document.body.appendChild(rastro);
+    setTimeout(() => rastro.remove(), 800);
+  }
+
+  inicio.style.display = "none";
+  carta.style.display = "block";
+
+  musica.volume = 0.7;
+  musica.play();
+});
+</script>
+
+</body>
+</html>
