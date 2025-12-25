@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para mi amor 🎄❤️</title>
+
+  <!-- No indexar en Google -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Tipografías elegantes -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Fondo navideño en video */
+    #fondo-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Oscurecer fondo */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.55);
+      z-index: -1;
+    }
+
+    /* Contenedor principal */
+    .contenedor {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    /* Sobre */
+    #sobre {
+      font-size: 120px;
+      cursor: pointer;
+      transition: transform .4s;
+    }
+
+    #sobre:hover {
+      transform: scale(1.1);
+    }
+
+    .mensaje {
+      margin-top: 15px;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    /* Carta */
+    #carta {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: url("nosotros.jpeg") center/cover no-repeat;
+    }
+
+    .carta-overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,.62);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px;
+    }
+
+    .carta-contenido {
+      max-width: 700px;
+      color: #fff;
+      text-align: center;
+      animation: aparecer 1.5s ease;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 22px;
+      line-height: 1.7;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; }
+      p { font-size: 20px; }
+      #sobre { font-size: 90px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Video navideño -->
+  <video id="fondo-video" autoplay muted loop>
+    <source src="navidad.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <!-- Música local -->
+  <audio id="musica" loop>
+    <source src="perfect.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Pantalla inicial -->
+  <div class="contenedor" id="pantalla-inicial">
+    <div>
+      <div id="sobre">✉️</div>
+      <div class="mensaje">Toca el sobre, mi amor</div>
+    </div>
+  </div>
+
+  <!-- Carta -->
+  <div id="carta">
+    <div class="carta-overlay">
+      <div class="carta-contenido">
+        <h1>Feliz Navidad, mi amor 🎄❤️</h1>
+        <p>
+          Esta carta es solo un pequeño reflejo de todo lo que siento por ti.  
+          Gracias por ser mi paz, mi sonrisa diaria y mi lugar seguro.  
+          Cada momento a tu lado es un regalo que atesoro con todo mi corazón.  
+          <br><br>
+          Que esta Navidad esté llena de amor, luz y sueños compartidos.  
+          Te amo más de lo que las palabras pueden decir.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const sobre = document.getElementById("sobre");
+    const musica = document.getElementById("musica");
+    const pantalla = document.getElementById("pantalla-inicial");
+    const carta = document.getElementById("carta");
+
+    sobre.addEventListener("click", () => {
+      pantalla.style.display = "none";
+      carta.style.display = "block";
+      musica.volume = 0.7;
+      musica.play();
+    });
+  </script>
+
+</body>
+</html>
